@@ -11,7 +11,7 @@ Cd("T:"); // If this fail just use Mount follow the instructions to mount the T 
 
 You can configure the Keybinds inside the ZealTiler.ZC file.
 
-Default Keybinds :
+Default Keybinds (used with Ctrl-Alt pressed) :
 
   - Left Side : H
   - Bottom : J
