@@ -1,6 +1,6 @@
 # ZealTiler
 Tiling Window Manager for ZealOS based on [TempleTiler](https://github.com/bbielsa/TempleTiler)
-[ZealTiler](https://raw.githubusercontent.com/l0wigh/ZealTiler/master/ZealTiler.png)
+![ZealTiler](https://raw.githubusercontent.com/l0wigh/ZealTiler/master/ZealTiler.png)
 
 # Installation
 Download the ISO and put it in the CD Drive, then Run :
