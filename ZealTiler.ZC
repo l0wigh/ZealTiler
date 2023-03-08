@@ -1,0 +1,36 @@
+Cd(__DIR__);;
+#include "Window";
+#include "Hotkeys";
+
+#define HK_TOP_LEFT     'Y'
+#define HK_TOP          'K'
+#define HK_TOP_RIGHT    'O'
+#define HK_LEFT         'H'
+#define HK_MIDDLE       'M'
+#define HK_RIGHT        'L'
+#define HK_BOTTOM_LEFT  'U'
+#define HK_BOTTOM       'J'
+#define HK_BOTTOM_RIGHT 'I'
+#define HK_QUIT_TERM    'Q'
+
+/**
+#define HK_TOP_LEFT     'T'
+#define HK_TOP          'Y'
+#define HK_TOP_RIGHT    'U'
+#define HK_LEFT         'G'
+#define HK_MIDDLE       'H'
+#define HK_RIGHT        'J'
+#define HK_BOTTOM_LEFT  'V'
+#define HK_BOTTOM       'B'
+#define HK_BOTTOM_RIGHT 'N'
+**/
+
+RegisterTileHotkey(HK_TOP_LEFT    , TILE_POS_TOP | TILE_POS_LEFT);     // 10
+RegisterTileHotkey(HK_TOP         , TILE_POS_TOP);                     // 8
+RegisterTileHotkey(HK_TOP_RIGHT   , TILE_POS_TOP | TILE_POS_RIGHT);    // 11
+RegisterTileHotkey(HK_LEFT        , TILE_POS_LEFT);                    // 2
+RegisterTileHotkey(HK_MIDDLE      , TILE_POS_MIDDLE);                  // 0
+RegisterTileHotkey(HK_RIGHT       , TILE_POS_RIGHT);                   // 3
+RegisterTileHotkey(HK_BOTTOM_LEFT , TILE_POS_BOTTOM | TILE_POS_LEFT);  // 14
+RegisterTileHotkey(HK_BOTTOM      , TILE_POS_BOTTOM);                  // 12
+RegisterTileHotkey(HK_BOTTOM_RIGHT, TILE_POS_BOTTOM | TILE_POS_RIGHT); // 15

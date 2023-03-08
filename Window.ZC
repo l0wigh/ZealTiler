@@ -1,0 +1,83 @@
+#define TILE_POS_MASK   15
+#define TILE_POS_TOP    0b1000
+#define TILE_POS_BOTTOM 0b1100
+#define TILE_POS_LEFT   0b0010
+#define TILE_POS_RIGHT  0b0011
+#define TILE_POS_MIDDLE 0b0000
+
+#define TILE_POS_HORZ   0b0011
+#define TILE_POS_VERT   0b1100
+
+#define GAP 2
+
+#define SCREEN_WIDTH  (sys_framebuffer_width / 8)
+#define SCREEN_HEIGHT (sys_framebuffer_height / 8)
+
+class Tile
+{
+	I64 left;
+	I64 top;
+	I64 bottom;
+	I64 right;
+};
+
+U0 TaskApplyTile(CTask *task, Tile *tile)
+{
+	WinHorz(tile->left, (tile->right - 1), task);
+	WinVert(tile->top, (tile->bottom - 1), task);
+}
+
+U0 TileApplyGap(Tile *tile, U64 gap, U8 status_bar_gap = 1)
+{
+	if (status_bar_gap)
+		tile->top += 1;
+	tile->left   += gap;
+	tile->top    += gap;
+	tile->bottom -= gap;
+	tile->right  -= gap;
+}
+
+I32 TileFromFlags(Tile *tile, U64 flags)
+{
+	I64 tile_pos;
+	I64 left;
+	I64 top;
+	I64 width;
+	I64 height;
+
+	tile_pos = flags & TILE_POS_MASK;
+	left = 0;
+	top = 0;
+	width = 0;
+	height = 0;
+
+	if (tile_pos & TILE_POS_HORZ == TILE_POS_RIGHT || tile_pos & TILE_POS_HORZ == TILE_POS_LEFT)
+		width = SCREEN_WIDTH / 2;
+	else
+		width = SCREEN_WIDTH;
+	if (tile_pos & TILE_POS_VERT == TILE_POS_BOTTOM || tile_pos & TILE_POS_VERT == TILE_POS_TOP)
+		height = SCREEN_HEIGHT / 2;
+	else
+		height = SCREEN_HEIGHT;
+	if (tile_pos & TILE_POS_HORZ == TILE_POS_RIGHT)
+		left = SCREEN_WIDTH / 2;
+	if (tile_pos & TILE_POS_VERT == TILE_POS_BOTTOM)
+		top = SCREEN_HEIGHT / 2;
+	tile->left = left;
+	tile->top = top;
+	tile->right = left + width;
+	tile->bottom = top + height;
+	return 1;
+}
+
+U0 TileWindow(CTask *task = NULL, U64 tile_flags)
+{
+	Tile *t = CAlloc(sizeof(Tile));
+
+	if (task == NULL)
+		task = sys_focus_task;
+	TileFromFlags(t, tile_flags);
+	TileApplyGap(t, GAP);
+	TaskApplyTile(task, t);
+	Free(t);
+}
