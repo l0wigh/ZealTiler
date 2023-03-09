@@ -6,7 +6,7 @@ if (YorN)
 	DirMake("~/ZealTiler");
 	Copy("ZealTiler.ZC", "~/ZealTiler/ZealTiler.ZC");
 	Copy("Window.ZC", "~/ZealTiler/Window.ZC");
-	Copy("KeyMapping.ZC", "~/ZealTiler/KeyMapping.ZC");
+	Copy("KeyMapper.ZC", "~/ZealTiler/KeyMapper.ZC");
 	"\nZealTiler is installed in your Home directory";
 	"\nYou can now run #include \"~/ZealTiler/ZealTiler\";\n\n";
 }
