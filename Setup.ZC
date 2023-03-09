@@ -3,7 +3,7 @@ DocClear;
 
 if (YorN)
 {
-	DirMake("~/ZealTiler");
+	DirMake("~/ZealTiler");
 	Copy("ZealTiler.ZC", "~/ZealTiler/ZealTiler.ZC");
 	Copy("Window.ZC", "~/ZealTiler/Window.ZC");
 	Copy("Hotkeys.ZC", "~/ZealTiler/Hotkeys.ZC");

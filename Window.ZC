@@ -4,11 +4,8 @@
 #define TILE_POS_LEFT   0b0010
 #define TILE_POS_RIGHT  0b0011
 #define TILE_POS_MIDDLE 0b0000
-
 #define TILE_POS_HORZ   0b0011
 #define TILE_POS_VERT   0b1100
-
-#define GAP 2
 
 #define SCREEN_WIDTH  (sys_framebuffer_width / 8)
 #define SCREEN_HEIGHT (sys_framebuffer_height / 8)
@@ -27,13 +24,16 @@ U0 TaskApplyTile(CTask *task, Tile *tile)
 	WinVert(tile->top, (tile->bottom - 1), task);
 }
 
-U0 TileApplyGap(Tile *tile, U64 gap, U8 status_bar_gap = 1)
+U0 TileApplyGap(Tile *tile, U64 gap)
 {
-	if (status_bar_gap)
-		tile->top += 1;
+	if (BOTTOM_GAP)
+		tile->bottom -= gap;
+	else
+		tile->bottom -= 1;
+	if (STATUS_BAR_GAP)
+		tile->top++;
 	tile->left   += gap;
 	tile->top    += gap;
-	tile->bottom -= gap;
 	tile->right  -= gap;
 }
 
@@ -76,7 +76,7 @@ U0 TileWindow(CTask *task = NULL, U64 tile_flags)
 
 	if (task == NULL)
 		task = sys_focus_task;
-	TileFromFlags(t, tile_flags);
+	TileFromFlags(t, tile_flags);
 	TileApplyGap(t, GAP);
 	TaskApplyTile(task, t);
 	Free(t);

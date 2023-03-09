@@ -11,7 +11,7 @@ U0 HandleTileHotkey(I64 scan_code)
 
 	ch = ScanCode2Char(scan_code);
 	index = ch + 64;
-	flag = tile_flag_hotkeys[index];
+	flag = tile_flag_hotkeys[index];
 
 	TileWindow(, flag); 
 }
